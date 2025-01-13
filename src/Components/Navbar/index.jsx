@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 
 import { ShoppingCarContext } from '../../Context'
+import { stringify } from 'postcss'
 
 const Navbar = () => {
     const context = useContext(ShoppingCarContext)
@@ -10,6 +11,15 @@ const Navbar = () => {
     const cleanFilters = () => {
         context.setSearchByCategory(null)
     }
+    const signOut = () =>{
+        localStorage.setItem('sign-out', JSON.stringify(true))
+        context.setSignOut(true)
+    }
+    const signIn = () =>{
+        localStorage.setItem('sign-out', JSON.stringify(false))
+        context.setSignOut(false)
+    }
+
     return (
         <nav className='flex justify-between items-center border border-b-black bg-white/90 fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
             <ul className='flex items-center gap-3'>
@@ -63,7 +73,7 @@ const Navbar = () => {
                 </li>
             </ul>
 
-            <ul className='flex items-center gap-3'>
+            <ul className={`${!context.signOut ? 'flex' : 'hidden'} items-center gap-3`}>
                 <li className='text-black/60'>
                     email@email.com 
                 </li>
@@ -79,17 +89,25 @@ const Navbar = () => {
                         My Account
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/sing-in'
-                        className={({ isActive }) => isActive ? activeStyle : undefined }>
-                        Sing in
-                    </NavLink>
+                <li onClick={() => signOut()}
+                    className='cursor-pointer'>
+                    Sing out
                 </li>
+                
                 <li className='flex items-center'>
                         <ShoppingBagIcon 
                         onClick={() => context.openChechoutSideMenu()}
                         className="size-6 text-black cursor-pointer" /> 
                     <div>{context.carProducts.length}</div>
+                </li>
+            </ul>
+
+            <ul className={`${context.signOut ? 'flex' : 'hidden'}  items-center gap-3 `}> 
+                <li onClick={() => signIn()}>
+                    <NavLink to='/sing-in'
+                        className={({ isActive }) => isActive ? activeStyle : undefined }>
+                        Sing in
+                    </NavLink>
                 </li>
             </ul>
         </nav>

@@ -11,6 +11,7 @@ const Card = (data) => {
         context.openProductDetail()
         context.setProductToShow(productDetail)
     }
+
     return (
         <div 
         className='bg-white cursor-pointer w-56 h-60 rounded-lg'
@@ -21,7 +22,6 @@ const Card = (data) => {
                 </span>
                 < img className='w-full h-full object-cover rounded-lg' 
                     src = "https://images.pexels.com/photos/24023639/pexels-photo-24023639/free-photo-of-craneo-humano-objeto-impreso-en-3-d.jpeg?auto=compress&cs=tinysrgb&w=400" alt= {data.data.title} />
-
             </figure>
             <p className='flex justify-between'>
                 <span className='text-sm font-light'>{data.data.title}</span>

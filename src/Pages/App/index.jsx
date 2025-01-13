@@ -5,7 +5,7 @@ import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
-import SingIn from '../SingIn'
+import SignIn from '../SignIn'
 import Navbar from '../../Components/Navbar'
 import { ShoppingCarProvider } from '../../Context'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
@@ -26,7 +26,7 @@ const AppRoutes = () =>{
     { path: '/my-orders/last', element: <MyOrder />},
     { path: '/my-orders/:id', element: <MyOrder />},
     { path: '/*', element: <NotFound />},
-    { path: '/Sing-in', element: <SingIn />},
+    { path: '/Sign-in', element: <SignIn />},
     
   ])
   return routes

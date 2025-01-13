@@ -11,6 +11,30 @@ const ProductDetail = () => {
         context.closeProductDetail()
         console.log('CART: ',context.carProducts )
     }
+    const renderIcon = (id) => {
+        const isInCart = context.carProducts.filter(product => product.id === id).length > 0
+
+        if(isInCart){
+            return (
+                <button 
+                className= 'absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2'
+                >
+                <CheckBadgeIcon 
+                className="size-10 text-green-600"/> 
+                </button>
+            )
+        } else{
+            return(
+                <button 
+                    className= 'absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2'
+                    onClick={(event) => addProducts(event, data.data)}
+                >
+                <PlusCircleIcon 
+                className="size-10 text-black"/> 
+                </button>
+            )
+        }
+    }
 
     return (
         <aside 
@@ -36,8 +60,9 @@ const ProductDetail = () => {
             </div>
             <div className='px-6'>
                 <button 
-                className='w-full bg-green-500 py-3 mb-6 text-white rounded-lg'
+                className={`${!context.signOut ? ' bg-green-500' : 'bg-gray-300'} w-full py-3 mb-6 text-white rounded-lg`}
                 onClick={(event) => addProducts(context.productToShow)}
+                disabled = {context.signOut}
                 >Add</button>
             </div>
         </aside>
