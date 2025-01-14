@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 
 import { ShoppingCarContext } from '../../Context'
-import { stringify } from 'postcss'
+
 
 const Navbar = () => {
     const context = useContext(ShoppingCarContext)
@@ -103,8 +103,8 @@ const Navbar = () => {
             </ul>
 
             <ul className={`${context.signOut ? 'flex' : 'hidden'}  items-center gap-3 `}> 
-                <li onClick={() => signIn()}>
-                    <NavLink to='/sing-in'
+                <li>
+                    <NavLink to='/sign-in'
                         className={({ isActive }) => isActive ? activeStyle : undefined }>
                         Sing in
                     </NavLink>
