@@ -15,10 +15,58 @@ const Navbar = () => {
         localStorage.setItem('sign-out', JSON.stringify(true))
         context.setSignOut(true)
     }
-    const signIn = () =>{
-        localStorage.setItem('sign-out', JSON.stringify(false))
-        context.setSignOut(false)
+    const signOutLS = JSON.parse(localStorage.getItem('sign-out'))
+    const isSignOut = context.signOut 
+
+    const renderView =() =>{
+
+        if(!signOutLS){
+            
+            return(
+                <ul className={`flex items-center gap-3`}>
+                <li className='text-black/60'>
+                    email@email.com 
+                </li>
+                <li>
+                    <NavLink to='/my-orders'
+                        className={({ isActive }) => isActive ? activeStyle : undefined }>
+                        My orders
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to='/my-account'
+                        className={({ isActive }) => isActive ? activeStyle : undefined }>
+                        My Account
+                    </NavLink>
+                </li>
+                <li onClick={() => signOut()}
+                    className='cursor-pointer'>
+                    Sing out
+                </li>
+                
+                <li className='flex items-center'>
+                        <ShoppingBagIcon 
+                        onClick={() => context.openChechoutSideMenu()}
+                        className="size-6 text-black cursor-pointer" /> 
+                    <div>{context.carProducts.length}</div>
+                </li>
+            </ul>
+            )
+        }else{
+            return(
+                <ul className={` flex  items-center gap-3 `}> 
+                    <li>
+                        <NavLink to='/sign-in'
+                            className={({ isActive }) => isActive ? activeStyle : undefined }>
+                            Sing in
+                        </NavLink>
+                    </li>
+                </ul>
+            )
+        }
     }
+
+     
 
     return (
         <nav className='flex justify-between items-center border border-b-black bg-white/90 fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
@@ -72,44 +120,7 @@ const Navbar = () => {
                     </NavLink>
                 </li>
             </ul>
-
-            <ul className={`${!context.signOut ? 'flex' : 'hidden'} items-center gap-3`}>
-                <li className='text-black/60'>
-                    email@email.com 
-                </li>
-                <li>
-                    <NavLink to='/my-orders'
-                        className={({ isActive }) => isActive ? activeStyle : undefined }>
-                        My orders
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/my-account'
-                        className={({ isActive }) => isActive ? activeStyle : undefined }>
-                        My Account
-                    </NavLink>
-                </li>
-                <li onClick={() => signOut()}
-                    className='cursor-pointer'>
-                    Sing out
-                </li>
-                
-                <li className='flex items-center'>
-                        <ShoppingBagIcon 
-                        onClick={() => context.openChechoutSideMenu()}
-                        className="size-6 text-black cursor-pointer" /> 
-                    <div>{context.carProducts.length}</div>
-                </li>
-            </ul>
-
-            <ul className={`${context.signOut ? 'flex' : 'hidden'}  items-center gap-3 `}> 
-                <li>
-                    <NavLink to='/sign-in'
-                        className={({ isActive }) => isActive ? activeStyle : undefined }>
-                        Sing in
-                    </NavLink>
-                </li>
-            </ul>
+            {renderView()}
         </nav>
     )
 }

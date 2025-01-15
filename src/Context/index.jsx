@@ -4,7 +4,7 @@ export const ShoppingCarContext = createContext()
 
 export const inicializeLocalStorege = () => {
     const accountLS = localStorage.getItem('account')
-    const signOutLS = localStorage.getItem('sing-out')
+    const signOutLS = localStorage.getItem('sign-out')
     let parsedAccount
     let parsedSignOut
 
@@ -17,10 +17,11 @@ export const inicializeLocalStorege = () => {
 
     
     if(!signOutLS) {
-        localStorage.setItem('sing-out', JSON.stringify({}))
+        localStorage.setItem('sign-out', JSON.stringify({}))
         parsedSignOut = {}
     }else{
         parsedSignOut = JSON.parse(signOutLS)
+
     }
 }
 

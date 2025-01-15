@@ -6,7 +6,8 @@ import Layout from "../../Components/Layout"
 function SignIn() {
   const context = useContext(ShoppingCarContext)
   const signIn = () =>{
-    localStorage.setItem('sign-out', JSON.stringify(false))
+    const signOutS = JSON.stringify(false)
+    localStorage.setItem('sign-out', signOutS)
     context.setSignOut(false)
     console.log(context.signOut)
 }
