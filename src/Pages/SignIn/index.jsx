@@ -22,17 +22,22 @@ function SignIn() {
           <label className='mx-2'> Username</label>
           <input 
           type='text'
-          className='border focus:outline-none rounded-lg m-2' />
+          className='border focus:outline-none rounded-lg m-2 px-2' />
           <label className='mx-2'> Password</label>
           <input 
           type='password'
-          className='border focus:outline-none rounded-lg m-2' />
+          className='border focus:outline-none rounded-lg m-2 px-2' />
           <input 
           type='submit'
           value='Sing In'
           className='cursor-pointer border border-black rounded-lg m-2 p-2' />
-          <input type='button' value='Sing In' onClick={()=> signIn()} />
         </form>
+
+        <div className='flex justify-center items-center w-60 my-4'>
+          <button className='cursor-pointer border border-black bg-gray-200 rounded-lg m-2 p-2 w-full'> 
+            Register
+          </button>
+        </div>
       </Layout>
 
   )

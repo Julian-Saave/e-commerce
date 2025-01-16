@@ -11,16 +11,20 @@ export const inicializeLocalStorege = () => {
     if(!accountLS) {
         localStorage.setItem('account', JSON.stringify({}))
         parsedAccount = {}
+        setAccount(parsedAccount)
     }else{
         parsedAccount = JSON.parse(accountLS)
+        setAccount(parsedAccount)
     }
 
     
     if(!signOutLS) {
         localStorage.setItem('sign-out', JSON.stringify({}))
         parsedSignOut = {}
+        setSignOut(parsedSignOut)
     }else{
         parsedSignOut = JSON.parse(signOutLS)
+        setSignOut(parsedSignOut)
 
     }
 }
@@ -32,6 +36,33 @@ export const ShoppingCarProvider = ({children}) => {
 
     //Account . Sing Out
     const [signOut, setSignOut] = useState({})
+
+    useEffect(() => {
+        const accountLS = localStorage.getItem('account')
+        const signOutLS = localStorage.getItem('sign-out')
+        let parsedAccount
+        let parsedSignOut
+    
+        if(!accountLS) {
+            localStorage.setItem('account', JSON.stringify({}))
+            parsedAccount = {}
+            setAccount(parsedAccount)
+        }else{
+            parsedAccount = JSON.parse(accountLS)
+            setAccount(parsedAccount)
+        }
+    
+        
+        if(!signOutLS) {
+            localStorage.setItem('sign-out', JSON.stringify({}))
+            parsedSignOut = {}
+            setSignOut(parsedSignOut)
+        }else{
+            parsedSignOut = JSON.parse(signOutLS)
+            setSignOut(parsedSignOut)
+    
+        }
+      }, [])
 
     // Shopping cart . Increment
     const [count, setCount] = useState(0)

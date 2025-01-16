@@ -20,7 +20,7 @@ const Navbar = () => {
 
     const renderView =() =>{
 
-        if(!signOutLS){
+        if(!isSignOut){
             
             return(
                 <ul className={`flex items-center gap-3`}>
@@ -41,7 +41,9 @@ const Navbar = () => {
                 </li>
                 <li onClick={() => signOut()}
                     className='cursor-pointer'>
-                    Sing out
+                        <NavLink to='/'>
+                            Sing out
+                        </NavLink> 
                 </li>
                 
                 <li className='flex items-center'>
